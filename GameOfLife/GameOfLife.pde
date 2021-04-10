@@ -1,16 +1,17 @@
 int cell[];
-int scale = 15;
+int scale = 15; // Tamaño de celdas
 int size;
 
-boolean pause = false;
-boolean delete = false;
+boolean pause = false; // Estado del juego (Pausa o Continuo)
+boolean deleted = false; // Estado del juego (Borrado o Dibujado)
 
-float chance = 0.5;
+float chance = 0.5; // Probabilidad de La Vivencia de la Celulas
 
-int fr = 10;
+int fr = 10; // Velocidad Inicial del Juego
 
+// Estado inicial del juego
 void setup(){
-  size(750,750);
+  size(1050,750);
   size = width / scale;
   cell = new int[size*size];
   
@@ -23,6 +24,7 @@ void setup(){
   } 
 }
 
+// Proceso del Juego
 void draw(){
   background(255);
   drawCell();
@@ -33,6 +35,7 @@ void draw(){
   }
 }
 
+// Verificación de la supervivencia de la celula en la proxima generación
 int numN(int i, int j){
   int num = 0;
   
@@ -47,6 +50,7 @@ int numN(int i, int j){
   return num;
 }
 
+// La creación de la proxima generación de celulas
 void nextCell() {
   int[] next = cell.clone();
   for(int i=0; i<size; i++){
@@ -67,6 +71,7 @@ void nextCell() {
   }
 }
 
+// Dibujar la rejilla del juego
 void drawGrid() {
   stroke(150);
   for(int i=0; i<size; i++){
@@ -80,7 +85,7 @@ void drawGrid() {
   rect(x*scale, y*scale, scale, scale);
 }
 
-
+// Pintar celular vivas
 void  drawCell(){
   noStroke();
   fill(0);
@@ -93,6 +98,7 @@ void  drawCell(){
   }
 }
 
+// Borrar todas las celdas
 void zero(){
   for(int i=0; i<cell.length; i++){
     cell[i] = 0;
@@ -105,18 +111,21 @@ int pos(int i, int j){
   return i+j*size;
 }
 
+// Fijación del estado de las celulas
 void setCell(int i, int j, int v){
   cell[pos(i,j)] = v;
 }
 
+// Dibujo personalizado de las celdas
 void mouseDragged() {
-  if (delete){
+  if (deleted){
     setCell(mouseX/scale, mouseY/scale, 0);
   } else {
     setCell(mouseX/scale, mouseY/scale, 1);
   }
 }
 
+// Funciones extras del juego
 void keyPressed(){
   if(key == 'w'){
     fr = constrain(fr - 1, 1, 20);
@@ -128,9 +137,11 @@ void keyPressed(){
     pause = !pause;
   }
   if(key == 'd'){
-    delete = !delete;
+    deleted = !deleted;
   }
   if(key == 'c'){
     zero();
   }
 }
+
+// Algunas funciones de este programa han sido inspirados en el video explicativo de Barney.
