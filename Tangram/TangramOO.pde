@@ -8,7 +8,7 @@ PVector position = new PVector (mouseX, mouseY);       // Posición Actual De Mo
 PImage start, menu, levels, bg, finish, instructions;  // Imagenes de Pantalla
 PImage newLevel;                                       // Imagen Para Nuevo Nivel
 PImage[] level;                                        // Imagenes De Niveles
-int counter = 7;                                       // Contador Auxiliar
+int counter = 10;                                      // Contador Auxiliar
 boolean saved = false;                                 // Interruptor De Guardado
 int level_current = 0;                                 // Nivel Actual En Juego
 int black_pixels = 5000;                               // Pixeles Negros En Pantalla
