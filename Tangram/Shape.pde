@@ -29,7 +29,7 @@ abstract class Shape {
     rotate(rotation());                                    // Rota la figura segun la rotacion
     if (!_use) { strokeWeight(1); stroke(0,5,75); }        // Grosor y Color Linea Sin Uso
     else { strokeWeight(2); stroke(255,0,0); }             // Grosor y Color Linea En Uso
-    if (!state) { aspect(); }                               // Crea pieza sin reflexion
+    if (!state) { aspect(); }                              // Crea pieza sin reflexion
     else { aspect_r();}                                    // Crea pieza con reflejo (Solo Romboide)
     pop();
   }
