@@ -57,9 +57,9 @@ void drawGrid(float scale) {
 
 /*--------------------------------------------------------------------------------------------------*/
 
-void drawBorder(){
-  image(bg,0,0);
-  stroke(65,70,140);
+void drawBorder(){                                    // Funcion para dibujar el borde
+  image(bg,0,0);                                      // del juego para un mejor
+  stroke(65,70,140);                                  // entorno estetico
   strokeWeight(2);
   fill(255);
   rect(50, 50,width-100, height-100, 10);
