@@ -18,25 +18,23 @@ boolean complete = false;                              // Nivel Completado
 
 void setup() {
   size(1280, 720);
-  shapes = new Shape[7];
-  level = new PImage[10];
+  shapes = new Shape[7];                               // Arreglo de Piezas
+  level = new PImage[10];                              // Arreglo de Niveles
   
-  smooth(0);
+  smooth(0);                                           // Antialising
   
-  reboot();
+  reboot();                                            // Crear las fichas
   
-  start = loadImage("start.png");
-  menu = loadImage("menu.png");
-  levels = loadImage("levels.png");
-  bg = loadImage("background.png");
-  finish = loadImage("perfect.png");
-  instructions = loadImage("instrucciones.png");
+  start = loadImage("start.png");                      // Pantalla de Inicio 
+  menu = loadImage("menu.png");                        // Pantalla de Menu
+  levels = loadImage("levels.png");                    // Pantalla de Niveles
+  bg = loadImage("background.png");                    // Fondo
+  finish = loadImage("perfect.png");                   // Imagen de Completado
+  instructions = loadImage("instrucciones.png");       // Pantalla de Completado
   
   int i;
-  
   for (i=1; i<level.length; i++){
-    level[i] = loadImage("level_"+i+".png");
-  }
+    level[i] = loadImage("level_"+i+".png"); }         // Imagenes de Niveles
   
 }
 
@@ -87,11 +85,11 @@ void drawShapes(){
   for (Shape shape : shapes) { shape.draw(); }         // Dibuja las piezas del Tangram
   
   if (comprobation()){
-    complete = true;
+    complete = true;                                   // Nivel Completado
   }
   
   if (complete){
-    image(finish,0,0);
+    image(finish,0,0);                                 // Imagen de Completado
   }
 }
 
@@ -132,8 +130,6 @@ void actualLevel(int level_current){
       image(level[i],0,0);                             // imagen, sino, mostrará la
     }                                                  // imagen correspondiente
   }
-  
-  
 }
 
 /*--------------------------------------------------------------------------------------------------*/
@@ -142,17 +138,17 @@ boolean comprobation(){
   black_pixels = 0;
   loadPixels();
   
-  for (int i = 0; i <pixels.length; i++){
-    if (color(pixels[i]) == color(0)){
-      black_pixels++;}
-  }
+  for (int i = 0; i <pixels.length; i++){              // Analiza todo el arreglo en
+    if (color(pixels[i]) == color(0)){                 // busca de pixeles negros, si
+      black_pixels++;}                                 // lo hay lo suma a la variable
+  }                                                    // Black_Pixels
   
   if ((black_pixels<=1500)&&(level_current!=0)){
     for (Shape shape : shapes) {                       // Apagar todos los interruptores
       if (shape.use()){ shape.changeUse();}            // de uso de las piezas
     }
-    return true;
-  } else { return false; }
+    return true;                                       // Hay menos de 1500 pixeles negros
+  } else { return false; }                             // Hay mas de 1500 pixeles negros
 }
 
 /*--------------------------------------------------------------------------------------------------*/
@@ -202,25 +198,23 @@ void keyPressed() {
       counter ++;
     }
     if (state == 3 && level_current !=0 && complete == true){
-      complete = false;
-        reboot();
+      complete = false;                               // El nuevo nivel no está completado
+      reboot();                                       // Crea nuevamente las piezas
       if (level_current != 9){
-        level_current ++;
+        level_current ++;                             // Pasa al siguiente nivel
       } else {
-        state = 1;
-        level_current = 0;
+        state = 1;                                    // Todos los niveles completados así
+        level_current = 0;                            // que el jugador será llevado al menu
       }
     }
   }
   
   if (key == '1') {
     if (state == 1){                                  // Pasar pantalla 1 a 3
-      state = 3;
-      saved = !saved;
+      state = 3; saved = !saved;                      // Podrá guadar la figura que se haga
     }
     if (state == 2){
-      state = 3;
-      level_current = 1;                               // Nivel 1
+      state = 3; level_current = 1;                   // Nivel 1
     }
   }
   
@@ -228,60 +222,52 @@ void keyPressed() {
     if (state == 1){                                  // Pasar pantalla 1 a 2
       state = 2;
     } else if (state == 2){
-      state = 3;
-      level_current = 2;                               // Nivel 2
+      state = 3; level_current = 2;                   // Nivel 2
     }
   }
   
   if (key == '3'){
     if (state == 1){
-      state = 4;
+      state = 4;                                      // Pasar pantalla 1 a 4
     }
     if (state == 2){
-      state = 3;
-      level_current = 3;                               // Nivel 3
+      state = 3; level_current = 3;                   // Nivel 3
     }
   }
   
   if (key == '4'){
     if (state == 2){
-      state = 3;
-      level_current = 4;                               // Nivel 4
+      state = 3; level_current = 4;                   // Nivel 4
     }
   }
   
   if (key == '5'){
     if (state == 2){
-      state = 3;
-      level_current = 5;                               // Nivel 5
+      state = 3; level_current = 5;                   // Nivel 5
     }
   }
   
   if (key == '6'){
     if (state == 2){
-      state = 3;
-      level_current = 6;                               // Nivel 6
+      state = 3; level_current = 6;                   // Nivel 6
     }
   }
   
   if (key == '7'){
     if (state == 2){
-      state = 3;
-      level_current = 7;                               // Nivel 7
+      state = 3; level_current = 7;                   // Nivel 7
     }
   }
   
   if (key == '8'){
     if (state == 2){
-      state = 3;
-      level_current = 8;                               // Nivel 8
+      state = 3; level_current = 8;                   // Nivel 8
     }
   }
   
   if (key == '9'){
     if (state == 2){
-      state = 3;
-      level_current = 9;                               // Nivel 9
+      state = 3; level_current = 9;                   // Nivel 9
     }
   }
   
