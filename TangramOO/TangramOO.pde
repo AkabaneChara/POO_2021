@@ -174,9 +174,10 @@ void percentage_completed(){
     comprobation();                                    // Crea el porcentaje de nivel
     float aux;                                         // completado hasta el momento
     aux = (black_pixels*100)/total_black_pixels;       // teniendo en cuenta algunas
-    percentage = 100 - int(aux);                       // aproximaciones o errores
+    percentage = 100 - round(aux);                     // aproximaciones o errores
     if (percentage < 0) { percentage = 0; }            // humanos al momento de rellenar
     if (percentage > 100) { percentage = 100; }        // la figura negra
+    if (comprobation()) { percentage = 100; }
   }
 }
 
