@@ -8,7 +8,8 @@ PVector position = new PVector (mouseX, mouseY);       // Posición Actual De Mo
 PImage start, menu, levels, bg, finish, instructions;  // Imagenes de Pantalla
 PImage newLevel;                                       // Imagen Para Nuevo Nivel
 PImage[] level;                                        // Imagenes De Niveles
-int total_black_pixels = 57000;                        // Total Pixeles Negro En Un Nivel
+int error_range = 750;                                 // Margen de error
+int total_black_pixels = 58965 - error_range;          // Total Pixeles Negro En Un Nivel
 int percentage = 0;                                    // Porcentaje De Nivel Completado 
 int counter = 10;                                      // Contador Auxiliar
 boolean saved = false;                                 // Interruptor De Guardado
@@ -70,7 +71,7 @@ void drawBorder(){                                    // Funcion para dibujar el
 
 void draw() {
   background(255, 255, 255);
-  menu();  
+  menu();
 }
 
 /*--------------------------------------------------------------------------------------------------*/
@@ -153,7 +154,12 @@ boolean comprobation(){
       black_pixels++;}                                 // hay se suma a Black_Pixels
   }
   
-  if ((black_pixels<=1250)&&(level_current!=0)){
+  if (drawBorder) {
+    error_range = 1050;
+    total_black_pixels = 59262 - error_range;
+  } 
+  
+  if ((black_pixels<=error_range)&&(level_current!=0)){
     for (Shape shape : shapes) {                       // Apagar todos los interruptores
       if (shape.use()){ shape.changeUse();}            // de uso de las piezas
     }
@@ -170,7 +176,7 @@ void percentage_completed(){
     aux = (black_pixels*100)/total_black_pixels;       // teniendo en cuenta algunas
     percentage = 100 - int(aux);                       // aproximaciones o errores
     if (percentage < 0) { percentage = 0; }            // humanos al momento de rellenar
-    if (percentage >= 98) { percentage = 100; }        // la figura negra
+    if (percentage > 100) { percentage = 100; }        // la figura negra
   }
 }
 
