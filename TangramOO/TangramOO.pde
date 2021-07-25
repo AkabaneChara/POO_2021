@@ -163,8 +163,8 @@ boolean comprobation(){
     for (Shape shape : shapes) {                       // Apagar todos los interruptores
       if (shape.use()){ shape.changeUse();}            // de uso de las piezas
     }
-    return true;                                       // Hay menos de 1500 pixeles negros
-  } else { return false; }                             // Hay mas de 1500 pixeles negros
+    return true;                                       // Hay menos del margen pixeles negros
+  } else { return false; }                             // Hay mas del margen pixeles negros
 }
 
 /*--------------------------------------------------------------------------------------------------*/
