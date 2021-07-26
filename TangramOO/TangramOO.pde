@@ -20,8 +20,9 @@ int level_current = 0;                                 // Nivel Actual En Juego
 int black_pixels = 5000;                               // Pixeles Negros En Pantalla
 boolean complete = false;                              // Nivel Completado
 boolean switch_music = true;                           // Interruptor de musica
-int volume = 0;                                    // Volumen de la musica
+int volume = 0;                                        // Volumen de la musica
 AudioPlayer music;                                     // Musica
+PFont font_credits, font_percentage;                   // Fuentes
 
 /*--------------------------------------------------------------------------------------------------*/
 
@@ -31,6 +32,8 @@ void setup() {
   level = new PImage[10];                              // Arreglo de Nivel
   minim = new Minim(this);                             // Musica de Juego
   music = minim.loadFile("8Bit Summer by HeatleyBros.mp3");
+  font_credits = createFont("Honey and Raspberries.ttf",20);    // Fuente de Juego
+  font_percentage = createFont("Honey and Raspberries.ttf",50); // Fuente de Juego
   
   smooth(0);                                           // Antialising
   
@@ -81,6 +84,11 @@ void draw() {
   background(255, 255, 255);
   playMusic();
   menu();
+  
+  textFont(font_credits);                               // Crea el texto personalizado
+  fill(0,5,75);                                         // para los creditos del juego
+  text("Software by StoryChara", 65, 700);              // que aparecen en la parte
+  text("8 Bit Summer! by HeatleyBros", 950, 700);       // inferior del juego
 }
 
 /*--------------------------------------------------------------------------------------------------*/
@@ -116,11 +124,9 @@ void drawShapes(){
   }
   
   if (level_current != 0){
-    PFont aux;
-    aux = createFont("Honey and Raspberries.ttf",50);  // Crea el texto personalizado
-    textFont(aux);                                     // para el porcentaje completado
-    fill(0,5,75);                                      // del nivel
-    text(percentage+"%", 65, 100);
+    textFont(font_percentage);                         // Crea el texto personalizado
+    fill(0,5,75);                                      // para el porcentaje completado
+    text(percentage+"%", 65, 100);                     // del nivel
   }
 }
 
