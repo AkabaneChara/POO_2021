@@ -8,8 +8,8 @@ PVector position = new PVector (mouseX, mouseY);       // Posición Actual De Mo
 PImage start, menu, levels, bg, finish, instructions;  // Imagenes de Pantalla
 PImage newLevel;                                       // Imagen Para Nuevo Nivel
 PImage[] level;                                        // Imagenes De Niveles
-int error_range = 750;                                 // Margen de error
-int total_black_pixels = 58965 - error_range;          // Total Pixeles Negro En Un Nivel
+int error_range = 1179;                                // Margen de error
+int total_black_pixels = 57786;                        // Total Pixeles Negro En Un Nivel
 int percentage = 0;                                    // Porcentaje De Nivel Completado 
 int counter = 10;                                      // Contador Auxiliar
 boolean saved = false;                                 // Interruptor De Guardado
@@ -155,9 +155,9 @@ boolean comprobation(){
   }
   
   if (drawBorder) {
-    error_range = 1050;
-    total_black_pixels = 59262 - error_range;
-  } 
+    error_range = 1185;                                // Margen de error con borde
+    total_black_pixels = 58077;                        // Total del pixeles negros
+  }                                                    // con borde
   
   if ((black_pixels<=error_range)&&(level_current!=0)){
     for (Shape shape : shapes) {                       // Apagar todos los interruptores
